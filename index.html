@@ -209,6 +209,11 @@
         canvas.addEventListener('mouseup', stopDrawing);
         canvas.addEventListener('mouseout', stopDrawing);
 
+        // Touch events
+        canvas.addEventListener('touchstart', startDrawingTouch);
+        canvas.addEventListener('touchmove', drawTouch);
+        canvas.addEventListener('touchend', stopDrawing);
+
         function startDrawing(e) {
             isDrawing = true;
             draw(e);
@@ -230,6 +235,29 @@
         function stopDrawing() {
             isDrawing = false;
             context.beginPath();
+        }
+
+        // Touch event handlers
+        function startDrawingTouch(e) {
+            isDrawing = true;
+            drawTouch(e.touches[0]);
+        }
+
+        function drawTouch(e) {
+            if (!isDrawing) return;
+
+            context.lineWidth = 2;
+            context.lineCap = 'round';
+            context.strokeStyle = '#000';
+
+            var rect = canvas.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+
+            context.lineTo(x, y);
+            context.stroke();
+            context.beginPath();
+            context.moveTo(x, y);
         }
 
         function saveDrawing() {
