@@ -85,6 +85,29 @@
 <h1>Sketch & Save</h1>
 <body>
     <div id="enterNumPlayers" class="prompt">
+        <h2>How to play</h2>
+        <p>This game combines the fun of telephone with your artistic drawing skills. Use your mobile device or computer
+            to go around the circle and guess each other's words!
+        </p>
+        <p>First, everyone who is playing inputs the number of players in your circle. Next you will get a secret word. DON'T
+            SHARE IT WITH ANYONE! Once everyone is ready to start drawing, click start drawing.
+        </p>
+        <p>Now it's time to draw your secret word. You have one minute to draw your picture. Once you are done drawing, press
+            save drawing and put your device face down. Do not continue until everyone is done drawing. Once everyone is done,
+            pass your device to the person next to you and now they will try to guess your word. Once you have guessed your word.
+            Select Save guess and do not start drawing.
+        </p>
+        <p>After everyone saves their guess, pass your device again. The game keeps going until you recieve your own device back.
+            If there is an odd number of players, you will guess the last drawing once more then press save guess and you should
+            get your results. If there is an even number of players, place your device face down. Once everyone is finished drawing,
+            pass your device one last time and you should recieve your own device back. Now time for the fun part. Laughing at everyone's
+            guesses!
+        </p>
+        <p>Note: There should be one player who judges the final result based on how similar it is to the secret word. Then he/she rates the
+            result from 1 to 5 1 being not at all like the secret word and 5 being the secret word.
+        </p>
+        <p>Warning: DO NOT REFRESH, GO BACK, OR CLOSE THE PAGE!! If you do, you will lose all your data and that device will not be competitive!</p>
+        <p>Good luck and have fun!</p>
         <label for="numPlayers" style="font-size: 1.4rem">Enter number of players: </label>
         <input type="number" id="numPlayers" name="numPlayers">
         <button onclick="getSecretWord()">Submit</button>
@@ -297,6 +320,14 @@
             context.clearRect(0, 0, canvas.width, canvas.height);
         }
 
+        //Function to prevent user from accidentally closing page
+        window.addEventListener('beforeunload', function (e) {
+            // Prevent the default behavior and display a confirmation dialog
+            e.preventDefault();
+            // Setting a returnValue property is necessary for the dialog to be displayed in some browsers
+            e.returnValue = 'Are you sure you want to leave? You may lose unsaved changes.';
+        });
+
         const words = [
             "Apple",
             "Refrigerator",
@@ -497,7 +528,8 @@
             "Can of soda",
             "Fish in a bowl",
             "Alligator",
-            "Fighter jet"
+            "Fighter jet",
+            "Sailboat"
         ];
     </script>
 </body>
